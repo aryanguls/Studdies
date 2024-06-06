@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup - Additional Information</title>
+    <link rel="stylesheet" href="static/css/signup_additional.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="navbar">
+        <a href="index.html">
+            <img src="static/images/studdies_logo.png" alt="Studdies Logo" class="header-logo">
+        </a>
+        <a href="index.html" class="back-home">
+            <span>&larr; Back</span>
+        </a>
+    </div>
+    <div class="login-container">
+        <div class="login-form">
+            <img src="static/images/studdies_logo.png" alt="Studdies Logo" class="logo-login">
+            <h1>Additional Information</h1>
+            <form id="additionalForm">
+                <div>
+                    <label for="class1">Class 1 Name</label>
+                    <input type="text" id="class1" name="class1" required>
+                    <label for="partner1">Do you have a partner?</label>
+                    <select id="partner1" name="partner1" required>
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="class2">Class 2 Name</label>
+                    <input type="text" id="class2" name="class2" required>
+                    <label for="partner2">Do you have a partner?</label>
+                    <select id="partner2" name="partner2" required>
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="class3">Class 3 Name</label>
+                    <input type="text" id="class3" name="class3" required>
+                    <label for="partner3">Do you have a partner?</label>
+                    <select id="partner3" name="partner3" required>
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="class4">Class 4 Name</label>
+                    <input type="text" id="class4" name="class4" required>
+                    <label for="partner4">Do you have a partner?</label>
+                    <select id="partner4" name="partner4" required>
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
+                </div>
+                <textarea id="academic-info" name="academic_info" placeholder="Describe your academic interests, achievements, and goals..." rows="4"></textarea>
+                <textarea id="personal-info" name="personal_info" placeholder="Share some personal details, hobbies, and interests..." rows="4"></textarea>
+                <button type="submit" class="login-btn">Submit</button>
+            </form>
+            <p id="additionalMessage" style="color:red;"></p>
+        </div>
+    </div>
+    <script>
+        document.getElementById('additionalForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const userId = localStorage.getItem('userId');
+            const classes = [
+                document.getElementById('class1').value,
+                document.getElementById('class2').value,
+                document.getElementById('class3').value,
+                document.getElementById('class4').value
+            ];
+            const partnerStatus = [
+                document.getElementById('partner1').value,
+                document.getElementById('partner2').value,
+                document.getElementById('partner3').value,
+                document.getElementById('partner4').value
+            ];
+            const academicInfo = document.getElementById('academic-info').value;
+            const personalInfo = document.getElementById('personal-info').value;
+
+            const response = await fetch(`/user/${userId}`, {
+                method: 'PATCH',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ classes, partnerStatus, academicInfo, personalInfo })
+            });
+
+            if (response.ok) {
+                const user = await response.json();
+                localStorage.setItem('user', JSON.stringify(user)); // Store updated user data in local storage
+                window.location.href = 'homepage.html';
+            } else {
+                const message = await response.json();
+                document.getElementById('additionalMessage').textContent = message.message;
+            }
+        });
+    </script>
+</body>
+</html>

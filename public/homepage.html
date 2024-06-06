@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Home</title>
+    <link rel="icon" type="image/x-icon" href="static/images/studdies_logo.ico">
+    <link rel="stylesheet" href="static/css/homepage.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav>
+        <div class="brand">
+            <img src="static/images/studdies_logo.png" alt="Studdies Logo" class="logo-icon">
+        </div>
+        <div class="nav-buttons-container">
+            <div class="nav-buttons">
+                <button class="nav-btn" onclick="goHome()">
+                    <img src="static/images/home.png" alt="Home Logo" class="nav-logo">
+                    Home
+                </button>
+                <button class="nav-btn" onclick="showClass('class1')">
+                    <img src="static/images/book.png" alt="Class 1 Logo" class="nav-logo">
+                    <span id="nav-class1-text">Class 1</span>
+                </button>
+                <button class="nav-btn" onclick="showClass('class2')">
+                    <img src="static/images/book.png" alt="Class 2 Logo" class="nav-logo">
+                    <span id="nav-class2-text">Class 2</span>
+                </button>
+                <button class="nav-btn" onclick="showClass('class3')">
+                    <img src="static/images/book.png" alt="Class 3 Logo" class="nav-logo">
+                    <span id="nav-class3-text">Class 3</span>
+                </button>
+                <button class="nav-btn" onclick="showClass('class4')">
+                    <img src="static/images/book.png" alt="Class 4 Logo" class="nav-logo">
+                    <span id="nav-class4-text">Class 4</span>
+                </button>
+            </div>
+        </div>
+        <div class="nav-links">
+            <a href="profile.html" class="nav-link">Your Profile</a>
+            <a href="index.html" class="nav-link">Log Out</a>
+        </div>
+        <div class="hamburger" onclick="toggleDropdown()">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+    </nav>
+    <section class="main-content">
+        <div class="left-content">
+            <div class="welcome">
+                <h1>Welcome <span id="username">User</span>!</h1>
+            </div>
+            <div class="content-full-width">
+                <h2 class="subheading">Spring 2024</h2>
+                <hr class="section-divider">
+                <div class="class-boxes">
+                    <div class="class-box" onclick="showClass('class1')">
+                        <h2 id="class1-text">Class 1</h2>
+                    </div>
+                    <div class="class-box" onclick="showClass('class2')">
+                        <h2 id="class2-text">Class 2</h2>
+                    </div>
+                    <div class="class-box" onclick="showClass('class3')">
+                        <h2 id="class3-text">Class 3</h2>
+                    </div>
+                    <div class="class-box" onclick="showClass('class4')">
+                        <h2 id="class4-text">Class 4</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="class-content" id="class-content">
+                <div id="class1-content" class="class-section" style="display: none;">
+                    <div class="search-bar">
+                        <div class="search-container">
+                            <input type="text" placeholder="Search Class 1..." id="search-class1" onkeyup="filterNames('class1')">
+                            <span class="search-icon">&#128269;</span>
+                        </div>
+                        <select id="filter-class1" onchange="filterNames('class1')">
+                            <option value="">All</option>
+                            <option value="Senior">Year: Senior</option>
+                            <option value="Junior">Year: Junior</option>
+                            <option value="Junior">Year: Sophomore</option>
+                            <option value="Junior">Year: Freshman</option>
+                            <option value="Need Partner">Status: Need Partner</option>
+                            <option value="Has Partner">Status: Has Partner</option>
+                        </select>
+                    </div>
+                    
+                    <h2 id="class1-people-heading">Class 1 People</h2>
+                    <div class="modal-buttons-container" id="class1-people"></div>
+                    <div id="no-results-class1" class="no-results">
+                        <img src="static/images/no-result.png" alt="No results found">
+                        <p>Sorry! It seems like no students can be found with that match. Reach out to us <a href="mailto:support@example.com" style="color: inherit; text-decoration: underline;">here</a> and we'll get to finding your perfect study buddies.</p>
+                    </div>
+                </div>
+
+                <div id="class2-content" class="class-section" style="display: none;">
+                    <div class="search-bar">
+                        <div class="search-container">
+                            <input type="text" placeholder="Search Class 2..." id="search-class2" onkeyup="filterNames('class2')">
+                            <span class="search-icon">&#128269;</span>
+                        </div>
+                        <select id="filter-class2" onchange="filterNames('class2')">
+                            <option value="">All</option>
+                            <option value="Senior">Year: Senior</option>
+                            <option value="Junior">Year: Junior</option>
+                            <option value="Junior">Year: Sophomore</option>
+                            <option value="Junior">Year: Freshman</option>
+                            <option value="Need Partner">Status: Need Partner</option>
+                            <option value="Has Partner">Status: Has Partner</option>
+                        </select>
+                    </div>
+                    <h2 id="class2-people-heading">Class 2 People</h2>
+                    <div class="modal-buttons-container" id="class2-people"></div>
+                    <div id="no-results-class2" class="no-results">
+                        <img src="static/images/no-result.png" alt="No results found">
+                        <p>Sorry! It seems like no students can be found with that match. Reach out to us <a href="mailto:support@example.com" style="color: inherit; text-decoration: underline;">here</a> and we'll get to finding your perfect study buddies.</p>
+                    </div>
+                </div>
+
+                <div id="class3-content" class="class-section" style="display: none;">
+                    <div class="search-bar">
+                        <div class="search-container">
+                            <input type="text" placeholder="Search Class 3..." id="search-class3" onkeyup="filterNames('class3')">
+                            <span class="search-icon">&#128269;</span>
+                        </div>
+                        <select id="filter-class3" onchange="filterNames('class3')">
+                            <option value="">All</option>
+                            <option value="Senior">Year: Senior</option>
+                            <option value="Junior">Year: Junior</option>
+                            <option value="Junior">Year: Sophomore</option>
+                            <option value="Junior">Year: Freshman</option>
+                            <option value="Need Partner">Status: Need Partner</option>
+                            <option value="Has Partner">Status: Has Partner</option>
+                        </select>
+                    </div>
+                    <h2 id="class3-people-heading">Class 3 People</h2>
+                    <div class="modal-buttons-container" id="class3-people"></div>
+                    <div id="no-results-class3" class="no-results">
+                        <img src="static/images/no-result.png" alt="No results found">
+                        <p>Sorry! It seems like no students can be found with that match. Reach out to us <a href="mailto:support@example.com" style="color: inherit; text-decoration: underline;">here</a> and we'll get to finding your perfect study buddies.</p>
+                    </div>
+                </div>
+
+                <div id="class4-content" class="class-section" style="display: none;">
+                    <div class="search-bar">
+                        <div class="search-container">
+                            <input type="text" placeholder="Search Class 4..." id="search-class4" onkeyup="filterNames('class4')">
+                            <span class="search-icon">&#128269;</span>
+                        </div>
+                        <select id="filter-class4" onchange="filterNames('class4')">
+                            <option value="">All</option>
+                            <option value="Senior">Year: Senior</option>
+                            <option value="Junior">Year: Junior</option>
+                            <option value="Junior">Year: Sophomore</option>
+                            <option value="Junior">Year: Freshman</option>
+                            <option value="Need Partner">Status: Need Partner</option>
+                            <option value="Has Partner">Status: Has Partner</option>
+                        </select>
+                    </div>
+                    <h2 id="class4-people-heading">Class 4 People</h2>
+                    <div class="modal-buttons-container" id="class4-people"></div>
+                    <div id="no-results-class4" class="no-results">
+                        <img src="static/images/no-result.png" alt="No results found">
+                        <p>Sorry! It seems like no students can be found with that match. Reach out to us <a href="mailto:support@example.com" style="color: inherit; text-decoration: underline;">here</a> and we'll get to finding your perfect study buddies.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="right-content" id="expectations-box">
+            <div class="expectations-box">
+                <h2>Expectations</h2>
+                <p>Welcome to <strong>Studdies</strong>!</p>
+                <p>Let's begin finding you the <strong>right group</strong> of classmates for <strong>study sessions</strong> and <strong>projects</strong>.</p>
+                <p>Here are some <strong>expectations</strong>:</p>
+                <ul>
+                    <li>Be respectful to your peers.</li>
+                    <li>Collaborate effectively in group projects.</li>
+                    <li>Maintain academic integrity.</li>
+                    <li>Do not create fake accounts or harass other users.</li>
+                    <li>Report any suspicious or inappropriate behavior.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const user = JSON.parse(localStorage.getItem('user'));
+            
+            if (user && user.name) {
+                const firstName = user.name.split(' ')[0];
+                document.getElementById('username').textContent = firstName;
+            }
+            
+            if (user && user.classes) {
+                let classes = user.classes;
+                if (typeof classes === 'string') {
+                    classes = classes.split(',').map(cls => cls.trim());
+                }
+                
+                if (classes.length >= 4) {
+                    document.getElementById('nav-class1-text').textContent = classes[0];
+                    document.getElementById('nav-class2-text').textContent = classes[1];
+                    document.getElementById('nav-class3-text').textContent = classes[2];
+                    document.getElementById('nav-class4-text').textContent = classes[3];
+                    
+                    document.getElementById('class1-text').textContent = classes[0];
+                    document.getElementById('class2-text').textContent = classes[1];
+                    document.getElementById('class3-text').textContent = classes[2];
+                    document.getElementById('class4-text').textContent = classes[3];
+
+                    loadClassUsers(1, classes[0]);
+                    loadClassUsers(2, classes[1]);
+                    loadClassUsers(3, classes[2]);
+                    loadClassUsers(4, classes[3]);
+                }
+            }
+        });
+
+        function loadClassUsers(classNumber, className) {
+            fetch('/users')
+                .then(response => response.json())
+                .then(users => {
+                    const classUsers = users.filter(user => user.classes.includes(className));
+                    const classContainer = document.getElementById(`class${classNumber}-people`);
+                    classContainer.innerHTML = '';
+
+                    if (classUsers.length > 0) {
+                        classUsers.forEach(user => {
+                            const userButton = document.createElement('button');
+                                userButton.className = 'modal-button';
+                                userButton.innerHTML = `
+                                    <img src="static/images/no-profile.png" alt="Preview of the image">
+                                    <div class="connect-button" onclick="openGroupRequestModal('${user.email}')">Connect</div>
+                                    <span class="button-text">
+                                        <strong>${user.name}</strong><br>
+                                        ${user.year}<br>
+                                        <em>Academic Info:</em> ${user.academicInfo}<br>
+                                        <em>Personal Info:</em> ${user.personalInfo}
+                                    </span>
+                                    <div class="status-badge ${user.partnerStatus.includes('yes') ? 'taken' : 'free'}">
+                                        ${user.partnerStatus.includes('yes') ? 'Has Partner' : 'Need Partner'}
+                                    </div>
+                                `;
+                                classContainer.appendChild(userButton);
+
+                                // Add event listener for opening modal (if you want to use modals)
+                                userButton.addEventListener('click', (event) => {
+                                    openModal(userButton, event);
+                                });
+                        });
+                    } else {
+                        document.getElementById(`no-results-class${classNumber}`).style.display = 'block';
+                    }
+                });
+        }
+    </script>
+    <div class="overlay" id="overlay"></div>
+
+    <div id="friendPopup" class="popup" style="display:none;">
+        <p>Added as a friend!</p>
+    </div>
+
+    <!-- Report Modal -->
+    <div id="reportModal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <p>Are you sure you want to report this user for inappropriate conduct?</p>
+            <button class="modal-button green-button">Yes</button>
+            <button class="modal-button red-button" onclick="closeReportModal()">Cancel</button>
+        </div>
+    </div>
+
+    <div id="groupRequestModal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <h2>Group Request</h2>
+            <textarea id="groupRequestMessage" placeholder="Enter your message..." rows="4"></textarea>
+            <button class="modal-button green-button" onclick="sendGroupRequest()">Send</button>
+            <button class="modal-button red-button" onclick="closeGroupRequestModal()">Cancel</button>
+        </div>
+    </div>
+    <script src="homepage.js"></script>
+</body>
+</html>

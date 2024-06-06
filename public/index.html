@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Studdies - Find your studymates with ease</title>
+    <link rel="icon" type="image/x-icon" href="static/images/studdies_logo.ico">
+    <link rel="stylesheet" href="static/css/index.css">
+    <!-- Google Font Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.43.4/dist/umd/supabase.min.js"></script>
+</head>
+<body>
+    <nav>
+        <!-- Separated container for navigation -->
+        <div class="nav-container">
+            <!-- Logo, Brand Name, and Menu Toggle Button -->
+            <div class="brand">
+                <img src="static/images/studdies_logo.png" alt="Studdies Logo" class="logo-icon">
+                <span class="brand-name">Studdies</span>
+            </div>
+    
+            <!-- Hamburger Menu Button -->
+            <div class="hamburger" onclick="toggleDropdown()">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+            
+            <!-- Navigation Links -->
+            <div class="nav-links">
+                <a href="login.html">Get Started</a>
+                <a href="mailto:crissyl@stanford.edu">Contact Us</a>
+            </div>
+        </div>
+    </nav>
+    <!-- Rest of your page content -->
+
+    <!-- Main Content -->
+    <section class="main-content">
+        <!-- Separated container for main content -->
+        <div class="content-container">
+            <div class="intro">
+                <h1>Finding Your Study Squad Made Easy.</h1>
+                <p>We simplify the process of finding the right group of classmates or partners using student profiles to effortlessly connect you with peers in your classes.</p>
+                <div class="btn-group">
+                    <a href="login.html" class="primary-btn">Try it Now</a>
+                    <a href="mailto:crissyl@stanford.edu" class="primary-btn">Know More</a>
+                </div>
+            </div>
+
+            <!-- Right-side content -->
+            <div class="graphic-container">
+                <img src="static/images/studdies_mainGraphic.png" alt="Description of your graphic" class="main-graphic">
+            </div>
+
+        </div>
+    </section>
+
+    <script src="index.js"></script>
+
+</body>
+</html>

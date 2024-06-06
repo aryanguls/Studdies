@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Studdies</title>
+    <link rel="stylesheet" href="static/css/login.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>    
+    <div class="navbar">
+        <a href="index.html">
+            <img src="static/images/studdies_logo.png" alt="Studdies Logo" class="header-logo">
+        </a>
+        <a href="index.html" class="back-home">
+            <span>&larr; Back</span>
+        </a>
+    </div>
+    <div class="login-container">
+        <div class="login-form">
+            <img src="static/images/studdies_logo.png" alt="Studdies Logo" class="logo-login">
+            <h1>Login</h1>
+            <form id="loginForm">
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                <button type="submit" class="login-btn">Login</button>
+                <p>Not a member? <a href="signup.html">Signup now</a></p>
+            </form>
+            <p id="loginMessage" style="color:red;"></p>
+        </div>
+    </div>
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+    
+            const response = await fetch('/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, password })
+            });
+    
+            if (response.ok) {
+                const user = await response.json();
+                localStorage.setItem('user', JSON.stringify(user));
+                window.location.href = 'homepage.html';
+            } else {
+                const message = await response.json();
+                document.getElementById('loginMessage').textContent = message.message;
+            }
+        });
+    </script>
+</body>
+</html>

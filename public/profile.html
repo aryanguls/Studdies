@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - Studdies</title>
+    <link rel="stylesheet" href="static/css/profile.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="navbar">
+        <a href="index.html">
+            <img src="static/images/studdies_logo.png" alt="Studdies Logo" class="header-logo">
+        </a>
+        <a href="homepage.html" class="back-home">
+            <span>&larr; Back</span>
+        </a>
+    </div>
+    <div class="profile-container">
+        <div class="profile-header">
+            <img src="static/images/studdies_logo.png" alt="Studdies Logo" class="logo-profile">
+            <h1>Your Profile</h1>
+        </div>
+        <div class="profile-form">
+            <form id="profileForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="year">Year</label>
+                        <select id="year" name="year" required>
+                            <option value="Freshman">Freshman</option>
+                            <option value="Sophomore">Sophomore</option>
+                            <option value="Junior">Junior</option>
+                            <option value="Senior">Senior</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="academic-info">Academic Info</label>
+                        <textarea id="academic-info" name="academic_info" placeholder="Describe your academic interests, achievements, and goals..." rows="4"></textarea>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="class1">Class 1 Name</label>
+                        <input type="text" id="class1" name="class1" required>
+                        <label for="partner1">Do you have a partner?</label>
+                        <select id="partner1" name="partner1" required>
+                            <option value="yes">Yes</option>
+                            <option value="no">No</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="class2">Class 2 Name</label>
+                        <input type="text" id="class2" name="class2" required>
+                        <label for="partner2">Do you have a partner?</label>
+                        <select id="partner2" name="partner2" required>
+                            <option value="yes">Yes</option>
+                            <option value="no">No</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="class3">Class 3 Name</label>
+                        <input type="text" id="class3" name="class3" required>
+                        <label for="partner3">Do you have a partner?</label>
+                        <select id="partner3" name="partner3" required>
+>
+                            <option value="yes">Yes</option>
+                            <option value="no">No</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="class4">Class 4 Name</label>
+                        <input type="text" id="class4" name="class4" required>
+                        <label for="partner4">Do you have a partner?</label>
+                        <select id="partner4" name="partner4" required>
+                            <option value="yes">Yes</option>
+                            <option value="no">No</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group full-width">
+                        <label for="personal-info">Personal Info</label>
+                        <textarea id="personal-info" name="personal_info" placeholder="Share some personal details, hobbies, and interests..." rows="4"></textarea>
+                    </div>
+                </div>
+                <button type="submit" class="profile-btn">Update</button>
+            </form>
+            <p id="profileMessage"></p>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const user = JSON.parse(localStorage.getItem('user'));
+            if (user) {
+                document.getElementById('name').value = user.name || '';
+                document.getElementById('email').value = user.email || '';
+                document.getElementById('year').value = user.year || 'Freshman'; // Set the year value
+                document.getElementById('class1').value = user.classes[0] || '';
+                document.getElementById('class2').value = user.classes[1] || '';
+                document.getElementById('class3').value = user.classes[2] || '';
+                document.getElementById('class4').value = user.classes[3] || '';
+                document.getElementById('partner1').value = user.partnerStatus[0] || 'no';
+                document.getElementById('partner2').value = user.partnerStatus[1] || 'no';
+                document.getElementById('partner3').value = user.partnerStatus[2] || 'no';
+                document.getElementById('partner4').value = user.partnerStatus[3] || 'no';
+                document.getElementById('academic-info').value = user.academicInfo || '';
+                document.getElementById('personal-info').value = user.personalInfo || '';
+            }
+        });
+
+        document.getElementById('profileForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const userId = localStorage.getItem('userId');
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const year = document.getElementById('year').value;
+            const classes = [
+                document.getElementById('class1').value,
+                document.getElementById('class2').value,
+                document.getElementById('class3').value,
+                document.getElementById('class4').value
+            ];
+            const partnerStatus = [
+                document.getElementById('partner1').value,
+                document.getElementById('partner2').value,
+                document.getElementById('partner3').value,
+                document.getElementById('partner4').value
+            ];
+            const academicInfo = document.getElementById('academic-info').value;
+            const personalInfo = document.getElementById('personal-info').value;
+
+            const response = await fetch(`/user/${userId}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name, email, year, classes, partnerStatus, academicInfo, personalInfo })
+            });
+
+            if (response.ok) {
+                const user = await response.json();
+                localStorage.setItem('user', JSON.stringify(user)); // Store updated user data in local storage
+                window.location.href = 'homepage.html';
+            } else {
+                const message = await response.json();
+                document.getElementById('profileMessage').textContent = message.message;
+            }
+        });
+    </script>
+</body>
+</html>

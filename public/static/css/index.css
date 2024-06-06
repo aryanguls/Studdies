@@ -1,0 +1,327 @@
+/* Global Styles */
+body {
+    font-family: Poppins, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color:#ffffff
+}
+
+.container {
+    width: 90%;
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row; /* By default (larger screens) */
+}
+
+/* Navbar Styles */
+nav {
+    background-color: #ffffff; /* Or any color you prefer */
+    padding: 15px 0;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+}
+
+.logo-icon {
+    height: 40px;
+    width: 40px; /* Or adjust as needed */
+    margin-right: 13px; /* Spacing between logo icon and brand name */
+    border-radius: 10px;
+}
+
+.brand-name {
+    font-weight: 600;
+    font-size: 28px; /* Adjust size as needed */
+    color: #333;
+}
+
+.nav-links a {
+    margin-left: 30px;
+    font-weight: 400;
+    text-decoration: none;
+    color: #333; /* Or any color you prefer */
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: #8ba4ff; /* Color on hover. Change as per your theme */
+}
+
+/* Main Content Styles */
+.main-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 78vh; /* Adjust as per requirement */
+}
+
+.intro {
+    width: 44%; /* It'll take 40% of the screen */
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.intro h1 {
+    background: linear-gradient(90deg, #8ba4ff, #216bff); 
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-size: 4rem; 
+    font-weight: 600;
+    line-height: 1.3;
+    margin-bottom: 40px; 
+    animation: fadeIn 1s ease forwards;
+}
+
+.intro p {
+    color: #444;
+    font-size: 1.4rem;
+    font-weight: 500;
+    margin-bottom: 60px; /* Spacing between subtext and buttons */
+    animation: fadeIn 1s ease forwards; 
+}
+
+.btn-group {
+    display: flex;
+    gap: 30px; /* Gap between the two buttons */
+    animation: fadeIn 1s ease forwards; 
+}
+
+.primary-btn {
+    font-family: Poppins, 'sans-serif';
+    font-weight: 500;
+    background-color: #8ba4ff; /* Adjust the shade if necessary */
+    color: rgb(255, 255, 255);
+    padding: 10px 30px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    text-decoration: none;
+}
+
+.primary-btn:hover {
+    background-color: #216bff;
+    transform: scale(1.05); /* 5% larger on hover */
+}
+
+.graphic-container {
+    width: 48%; /* Remaining 50% of space */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 110px;
+}
+
+.main-graphic {
+    max-width: 100%; 
+    max-height: 100%;
+}
+
+/* Hamburger Menu Styles */
+.hamburger {
+    display: none; /* Hide by default */
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    align-items: center;
+}
+
+.bar {
+    width: 25px;
+    height: 3px;
+    background-color: #333;
+    border-radius: 2px;
+}
+
+/* Dropdown Active Styles */
+.nav-links.active {
+    display: flex;
+    position: absolute;
+    top: 70px;
+    right: 5%;
+    background-color: #f2f2f2;  /* Changed background color to light grey */
+    flex-direction: column;
+    gap: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    z-index: 1000;  /* Ensures dropdown content is above other page content */
+}
+
+.nav-links.active a {
+    text-align: center; /* Left aligns the text in dropdown */
+    margin-left: 15px; /* Add some padding to the left */
+    margin-right: 15px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.nav-container, .content-container {
+    width: 90%;
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row; /* By default (larger screens) */
+}
+
+@media only screen and (max-width: 1200px) {
+    .intro h1 {
+        font-size: 3.4rem; 
+    }
+
+    .intro p {
+        font-size: 1.2rem;
+    }
+
+    .primary-btn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+
+    .graphic-container{
+        margin-top: 65px;
+    }
+}
+
+/* For tablets and smaller desktops */
+@media only screen and (max-width: 1024px) {
+    .intro h1 {
+        font-size: 2.6rem; 
+    }
+
+    .intro p {
+        font-size: 1.1rem;
+    }
+
+    .primary-btn {
+        padding: 10px 15px;
+        font-size: 0.8rem;
+    }
+
+    .graphic-container{
+        margin-top: 40px;
+    }
+}
+
+/* For mobile devices */
+@media only screen and (max-width: 1000px) {
+    .nav-container {
+        width: 80%;
+        flex-direction: row; /* Make sure the brand remains on the left and the hamburger on the right */
+    }
+
+    .content-container {
+        width: 80%;
+        flex-direction: column;
+        text-align: center; 
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    .main-content {
+        flex-direction: column-reverse;
+        height: auto;
+        padding: 20px 0;
+    }
+
+    .intro, .graphic-container {
+        width: 100%;
+    }
+
+    .intro {
+        margin-top: 10px;
+        margin-bottom: 40px;
+    }
+
+    .intro h1 {
+        font-size: 2.5rem; 
+    }
+
+    .intro p {
+        font-size: 1rem;
+    }
+
+    .btn-group {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center; /* Center the buttons */
+        padding-bottom: 20px; /* Space below the buttons */
+    }
+
+    .primary-btn {
+        width: 35%;
+        margin: 0 auto; /* To center align the buttons */
+        margin-bottom: 10px; /* Space between stacked buttons */
+        box-sizing: border-box;
+        font-size: 1rem;
+    }
+
+    .graphic-container {
+        margin-top: 0; 
+        margin-bottom: 30px; /* Space at the bottom of the image */
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+}
+
+/* For mobile devices */
+@media only screen and (max-width: 768px) {
+    .primary-btn {
+        width: 35%;
+        margin: 0 auto; /* To center align the buttons */
+        margin-bottom: 10px; /* Space between stacked buttons */
+        box-sizing: border-box;
+        font-size: 0.85rem;
+    }
+}
+
+/* Very small screens, typical of mobile phones */
+@media only screen and (max-width: 480px) {
+    .brand-name {
+        font-size: 24px;
+    }
+
+    .logo-icon {
+        height: 35px;
+        width: 35px;
+    }
+
+    .intro h1 {
+        font-size: 2rem;
+    }
+
+    .intro p {
+        font-size: 0.9rem;
+    }
+
+    .primary-btn {
+        padding: 8px 15px;
+    }
+}
+
+
+
+

@@ -1,0 +1,68 @@
+[
+  {
+    "id": 1,
+    "name": "Aryan Gulati",
+    "email": "aryangul@stanford.edu",
+    "password": "aryan@2003",
+    "firstName": "Aryan",
+    "year": "Junior",
+    "classes": [
+      "CS278",
+      "CS269i",
+      "MUSIC105",
+      "CS107"
+    ],
+    "partnerStatus": [
+      "yes",
+      "no",
+      "yes",
+      "no"
+    ],
+    "academicInfo": "AI",
+    "personalInfo": "Tennis"
+  },
+  {
+    "id": 2,
+    "name": "Ryan Loo",
+    "email": "ryloo@stanford.edu",
+    "password": "ryan",
+    "firstName": "Ryan",
+    "year": "Junior",
+    "classes": [
+      "CS278",
+      "CS109",
+      "PHYS43",
+      "ENGLISH90"
+    ],
+    "partnerStatus": [
+      "no",
+      "yes",
+      "no",
+      "no"
+    ],
+    "academicInfo": "Love Design",
+    "personalInfo": "Enjoy the outdoors"
+  },
+  {
+    "id": 3,
+    "name": "Test User ",
+    "email": "test@gmail.com",
+    "password": "test",
+    "firstName": "Test",
+    "year": "Senior",
+    "classes": [
+      "CS278",
+      "CS106B",
+      "CS269i",
+      "MUSIC105"
+    ],
+    "partnerStatus": [
+      "no",
+      "yes",
+      "no",
+      "yes"
+    ],
+    "academicInfo": "Love business and economics",
+    "personalInfo": "Enjoy anything musical - playing the guitar, concerts "
+  }
+]

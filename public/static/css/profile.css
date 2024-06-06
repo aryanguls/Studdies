@@ -1,0 +1,140 @@
+/* Global Styles */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Poppins, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff;
+}
+
+.navbar {
+    width: 100%;
+    background-color: #fff;
+    padding: 10px 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000; /* Ensure the navbar stays on top */
+}
+
+.header-logo {
+    height: 40px;
+}
+
+.back-home {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+}
+
+.back-home:hover {
+    color: #333;
+    text-decoration: none;
+}
+
+.profile-container {
+    background: #edf8fe;
+    padding: 10px 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    width: 90%;
+    max-width: 1000px;
+    margin: 80px auto 20px; /* Adjust margin to prevent cut off */
+    text-align: center;
+}
+
+.profile-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.profile-container h1 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.logo-profile {
+    height: 80px;
+    margin-bottom: 20px;
+}
+
+.profile-form {
+    display: flex;
+    flex-direction: column; /* Stack form elements vertically */
+    align-items: center;
+    width: 100%;
+}
+
+.form-row {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.form-group {
+    width: 48%;
+}
+
+.form-group.full-width {
+    width: 100%;
+}
+
+.profile-form label {
+    display: block;
+    color: #333;
+    margin-bottom: 5px;
+    text-align: left; /* Left-align the labels */
+}
+
+.profile-form input[type="text"],
+.profile-form input[type="email"],
+.profile-form select,
+.profile-form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #8ba4ff;
+    border-radius: 5px;
+    font-family: Poppins, sans-serif;
+    font-size: 1rem;
+    color: #333;
+}
+
+.profile-form input::placeholder,
+.profile-form textarea::placeholder {
+    color: #aaa;
+}
+
+.profile-btn {
+    width: 200px;
+    padding: 10px;
+    background-color: #8ba4ff;
+    color: white;
+    border: 2px solid #8ba4ff;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-family: Poppins, sans-serif;
+    font-size: 1rem;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.profile-btn:hover {
+    background-color: #216bff;
+}
+
+#profileMessage {
+    color: red;
+    margin-top: 10px;
+}

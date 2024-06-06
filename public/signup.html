@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup - Studdies</title>
+    <link rel="stylesheet" href="static/css/login.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="navbar">
+        <a href="index.html">
+            <img src="static/images/studdies_logo.png" alt="Studdies Logo" class="header-logo">
+        </a>
+        <a href="index.html" class="back-home">
+            <span>&larr; Back</span>
+        </a>
+    </div>
+    <div class="login-container">
+        <div class="login-form">
+            <img src="static/images/studdies_logo.png" alt="Studdies Logo" class="logo-login">
+            <h1>Sign Up</h1>
+            <form id="signupForm">
+                <input type="text" id="name" name="name" placeholder="Enter your name" required>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                <select id="year" name="year" required>
+                    <option value="" disabled selected>Select your year</option>
+                    <option value="Freshman">Freshman</option>
+                    <option value="Sophomore">Sophomore</option>
+                    <option value="Junior">Junior</option>
+                    <option value="Senior">Senior</option>
+                </select>
+                <button type="submit" class="login-btn">Sign Up</button>
+                <p>Already a member? <a href="login.html">Login now</a></p>
+            </form>
+            <p id="signupMessage" style="color:red;"></p>
+        </div>
+    </div>
+    <script>
+        document.getElementById('signupForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const year = document.getElementById('year').value;
+
+            const response = await fetch('/signup', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name, email, password, year })
+            });
+
+            if (response.ok) {
+                const user = await response.json();
+                localStorage.setItem('user', JSON.stringify(user));
+                localStorage.setItem('userId', user.id); // Store the user ID in local storage
+                window.location.href = 'signup_additional.html';
+            } else {
+                const message = await response.json();
+                document.getElementById('signupMessage').textContent = message.message;
+            }
+        });
+    </script>
+</body>
+</html>
