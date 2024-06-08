@@ -64,5 +64,27 @@
     ],
     "academicInfo": "Love business and economics",
     "personalInfo": "Enjoy anything musical - playing the guitar, concerts "
+  },
+  {
+    "id": 4,
+    "name": "Hash User 1",
+    "email": "$2b$10$tD.jq7IpYlieL1WFIqgJxuMyWxFbsqkw3PM0GQf8.AIlXonY64zIW",
+    "password": "$2b$10$p.ornwjVrOpoxlJLd208VuUjiEFaFsO7w.zmFnUdPJyhEPEKnq7YK",
+    "firstName": "Hash",
+    "year": "Sophomore",
+    "classes": [
+      "sdavs",
+      "scadv",
+      "dcsvd",
+      "sc "
+    ],
+    "partnerStatus": [
+      "yes",
+      "yes",
+      "yes",
+      "yes"
+    ],
+    "academicInfo": "scavd ",
+    "personalInfo": "scVD "
   }
 ]

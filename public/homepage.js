@@ -42,7 +42,7 @@ function loadClassUsers(classNumber, className, userId) {
                     userButton.className = 'modal-button';
                     userButton.innerHTML = `
                         <img src="static/images/no-profile.png" alt="Preview of the image">
-                        <div class="connect-button">Email</div>
+                        <div class="connect-button">Form Group?</div>
                         <span class="button-text">
                             <strong>${user.name}</strong><br>
                             ${user.year}<br>
@@ -142,7 +142,7 @@ function toggleLike(button) {
     } else {
         button.classList.remove("liked-button");
         button.classList.add("connect-button");
-        button.textContent = "Email";
+        button.textContent = "Form Group?";
     }
 }
 
@@ -209,7 +209,7 @@ function generateUserButtons(className, classIndex) {
                     button.classList.add('modal-button');
                     button.innerHTML = `
                         <img src="static/images/no-profile.png" alt="Profile image of ${otherUser.firstName}">
-                        <div class="connect-button" onclick="openGroupRequestModal('${user.email}')">Email</div>
+                        <div class="connect-button" onclick="openGroupRequestModal('${user.email}')">Form Group?</div>
                         <span class="button-text">
                             <strong>${otherUser.name}</strong><br>
                             ${otherUser.year}<br>
@@ -296,15 +296,15 @@ function sendGroupRequest() {
     .then(response => response.json())
     .then(data => {
         if (data.success) {
-            alert('Email sent successfully!');
+            alert('Sent successfully!');
             closeGroupRequestModal();
         } else {
-            alert('Failed to send email. Please try again.');
+            alert('Failed to send. Please try again.');
         }
     })
     .catch(error => {
         console.error('Error:', error);
-        alert('Failed to send email. Please try again.');
+        alert('Failed to send. Please try again.');
     });
 }
 

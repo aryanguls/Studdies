@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const fs = require('fs');
 const path = require('path');
+const bcrypt = require('bcrypt');
 const app = express();
 const port = 3000;
 
@@ -28,7 +29,7 @@ app.get('/', (req, res) => {
 });
 
 // Endpoint to handle user signup
-app.post('/signup', (req, res) => {
+app.post('/signup', async (req, res) => {
   const data = readData();
   const { name, email, password, year } = req.body;
 
@@ -38,11 +39,15 @@ app.post('/signup', (req, res) => {
 
   const firstName = name.split(' ')[0]; // Extract first name
 
+  // Hash the email and password
+  const hashedEmail = await bcrypt.hash(email, 10);
+  const hashedPassword = await bcrypt.hash(password, 10);
+
   const newUser = {
     id: data.length ? data[data.length - 1].id + 1 : 1,
     name,
-    email,
-    password, // Note: In a real application, passwords should be hashed
+    email: hashedEmail,
+    password: hashedPassword,
     firstName, // Add first name
     year, // Add year
     classes: [],
@@ -76,11 +81,11 @@ app.patch('/user/:id', (req, res) => {
 });
 
 // Endpoint to handle user login
-app.post('/login', (req, res) => {
+app.post('/login', async (req, res) => {
   const data = readData();
   const { email, password } = req.body;
 
-  const user = data.find(user => user.email === email && user.password === password);
+  const user = data.find(user => bcrypt.compareSync(email, user.email) && bcrypt.compareSync(password, user.password));
 
   if (user) {
     res.json(user);
@@ -163,4 +168,3 @@ app.post('/send-email', (req, res) => {
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
-
