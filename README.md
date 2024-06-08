@@ -23,5 +23,5 @@ Follow these instructions to set up and run the project on your local machine.
    npm install 
 
 3. **To get it running**:
-    Go into the repository and run ``````bash
+    Go into the repository and run ```bash
    node server.js
