@@ -19,7 +19,9 @@ Follow these instructions to set up and run the project on your local machine.
    cd your-repository
 
 2. **Install Dependencies**:
-   ```npm install 
+   ```bash
+   npm install 
 
 3. **To get it running**:
-    Go into the repository and run ```node server.js
+    Go into the repository and run ``````bash
+   node server.js
