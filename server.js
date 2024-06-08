@@ -129,6 +129,38 @@ app.get('/users', (req, res) => {
   res.json(data);
 });
 
+const nodemailer = require('nodemailer');
+
+// Add this endpoint to handle sending emails
+app.post('/send-email', (req, res) => {
+    const { recipientEmail, message } = req.body;
+
+    // Configure your email transport using your preferred email service
+    const transporter = nodemailer.createTransport({
+        service: 'Gmail',
+        auth: {
+            user: 'your-email@gmail.com',
+            pass: 'your-email-password'
+        }
+    });
+
+    const mailOptions = {
+        from: 'your-email@gmail.com',
+        to: recipientEmail,
+        subject: 'Group Request',
+        text: message
+    };
+
+    transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+            console.error('Error sending email:', error);
+            return res.status(500).json({ success: false });
+        }
+        res.status(200).json({ success: true });
+    });
+});
+
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
+

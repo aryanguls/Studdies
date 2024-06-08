@@ -279,20 +279,43 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+function sendGroupRequest() {
+    const message = document.getElementById('groupRequestMessage').value;
+    const recipientEmail = document.getElementById('groupRequestModal').dataset.email;
+
+    fetch('/send-email', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            recipientEmail: recipientEmail,
+            message: message
+        }),
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert('Email sent successfully!');
+            closeGroupRequestModal();
+        } else {
+            alert('Failed to send email. Please try again.');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Failed to send email. Please try again.');
+    });
+}
+
 function openGroupRequestModal(email) {
-    document.getElementById('groupRequestModal').style.display = 'block';
-    document.getElementById('groupRequestModal').dataset.email = email;
+    const modal = document.getElementById('groupRequestModal');
+    modal.dataset.email = email;
+    modal.style.display = 'block';
     overlay.style.display = 'block';
 }
 
 function closeGroupRequestModal() {
     document.getElementById('groupRequestModal').style.display = 'none';
     overlay.style.display = 'none';
-}
-
-function sendGroupRequest() {
-    const email = document.getElementById('groupRequestModal').dataset.email;
-    const message = document.getElementById('groupRequestMessage').value;
-    window.location.href = `mailto:${email}?subject=Group%20Request&body=${encodeURIComponent(message)}`;
-    closeGroupRequestModal();
 }
