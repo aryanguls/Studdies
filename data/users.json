@@ -20,5 +20,27 @@
     ],
     "academicInfo": "AI, building projects ",
     "personalInfo": "Tennis, guitar and anything outdoorsy"
+  },
+  {
+    "id": 2,
+    "name": "Test User ",
+    "email": "$2b$10$QulXAqX.vGgy5BWjtJMHAu3esQqiWSTHsxXWhIyJjjwHGWHf560fy",
+    "password": "$2b$10$vwViczjCcgwOOg6rEgQL0uMauexTpTjnKOnHSBK86YynWDohCeuTa",
+    "firstName": "Test",
+    "year": "Sophomore",
+    "classes": [
+      "CS278",
+      "CS269i",
+      "MUSIC105",
+      "CS107"
+    ],
+    "partnerStatus": [
+      "no",
+      "yes",
+      "yes",
+      "yes"
+    ],
+    "academicInfo": "sdasfvg",
+    "personalInfo": "defrgd"
   }
 ]

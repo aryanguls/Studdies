@@ -6,6 +6,15 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('username').textContent = firstName;
     }
 
+    fetch(`/user/${user.id}`)
+        .then(response => response.json())
+        .then(data => {
+            if (data.email) {
+                user.email = data.email;
+                localStorage.setItem('user', JSON.stringify(user)); // Update local storage with the actual email
+            }
+        });
+
     if (user && user.classes) {
         const classes = user.classes;
 

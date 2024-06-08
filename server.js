@@ -3,11 +3,20 @@ const bodyParser = require('body-parser');
 const fs = require('fs');
 const path = require('path');
 const bcrypt = require('bcrypt');
+const session = require('express-session');
+const nodemailer = require('nodemailer');
 const app = express();
 const port = 3000;
 
 app.use(bodyParser.json());
 app.use(express.static('public')); // Serve static files from 'public' directory
+
+// Configure sessions
+app.use(session({
+  secret: 'your-secret-key',
+  resave: false,
+  saveUninitialized: true
+}));
 
 // Path to your JSON file
 const dataFilePath = path.join(__dirname, 'data', 'users.json');
@@ -58,7 +67,40 @@ app.post('/signup', async (req, res) => {
 
   data.push(newUser);
   writeData(data);
+  req.session.user = { ...newUser, email }; // Store the original email in session
   res.json(newUser);
+});
+
+// Endpoint to handle user login
+app.post('/login', async (req, res) => {
+  const data = readData();
+  const { email, password } = req.body;
+
+  const user = data.find(user => bcrypt.compareSync(email, user.email) && bcrypt.compareSync(password, user.password));
+
+  if (user) {
+    req.session.user = { ...user, email }; // Store the original email in session
+    res.json(user);
+  } else {
+    res.status(400).json({ message: 'Invalid email or password' });
+  }
+});
+
+// Endpoint to get user data by ID
+app.get('/user/:id', (req, res) => {
+  const data = readData();
+  const userId = parseInt(req.params.id);
+  const user = data.find(user => user.id === userId);
+
+  if (user) {
+    // Return the original email if the user is logged in
+    if (req.session.user && req.session.user.id === userId) {
+      user.email = req.session.user.email;
+    }
+    res.json(user);
+  } else {
+    res.status(404).json({ message: 'User not found' });
+  }
 });
 
 // Endpoint to handle additional information update
@@ -80,61 +122,10 @@ app.patch('/user/:id', (req, res) => {
   }
 });
 
-// Endpoint to handle user login
-app.post('/login', async (req, res) => {
-  const data = readData();
-  const { email, password } = req.body;
-
-  const user = data.find(user => bcrypt.compareSync(email, user.email) && bcrypt.compareSync(password, user.password));
-
-  if (user) {
-    res.json(user);
-  } else {
-    res.status(400).json({ message: 'Invalid email or password' });
-  }
-});
-
-// Endpoint to get user data by ID
-app.get('/user/:id', (req, res) => {
-  const data = readData();
-  const userId = parseInt(req.params.id);
-  const user = data.find(user => user.id === userId);
-
-  if (user) {
-    res.json(user);
-  } else {
-    res.status(404).json({ message: 'User not found' });
-  }
-});
-
-// Endpoint to handle profile update
-app.put('/user/:id', (req, res) => {
-  const data = readData();
-  const userId = parseInt(req.params.id);
-  const { name, email, classes, partnerStatus, academicInfo, personalInfo, year } = req.body;
-
-  const user = data.find(user => user.id === userId);
-  if (user) {
-    user.name = name;
-    user.email = email;
-    user.year = year; // Ensure the year is updated
-    user.classes = Array.isArray(classes) ? classes : classes.split(',').map(cls => cls.trim());
-    user.partnerStatus = Array.isArray(partnerStatus) ? partnerStatus : partnerStatus.split(',').map(status => status.trim());
-    user.academicInfo = academicInfo;
-    user.personalInfo = personalInfo;
-    writeData(data);
-    res.json(user);
-  } else {
-    res.status(404).json({ message: 'User not found' });
-  }
-});
-
 app.get('/users', (req, res) => {
   const data = readData();
   res.json(data);
 });
-
-const nodemailer = require('nodemailer');
 
 // Add this endpoint to handle sending emails
 app.post('/send-email', (req, res) => {
@@ -144,14 +135,15 @@ app.post('/send-email', (req, res) => {
     const transporter = nodemailer.createTransport({
         service: 'Gmail',
         auth: {
-            user: 'your-email@gmail.com',
-            pass: 'your-email-password'
+            user: 'studdies56@gmail.com',
+            pass: 'studdies@2024'
         }
     });
 
     const mailOptions = {
-        from: 'your-email@gmail.com',
-        to: recipientEmail,
+        from: 'studdies56@gmail.com',
+        // to: recipientEmail,
+        to: 'aryangul@stanford.edu',
         subject: 'Group Request',
         text: message
     };
