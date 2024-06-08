@@ -2,6 +2,7 @@
 Finding your study buddies made easy
 
 Technical Stack: HTML, CSS, JS & JSON
+
 Server: Node.js and Express
 
 npm install nodemailer
