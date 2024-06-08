@@ -2,8 +2,8 @@
   {
     "id": 1,
     "name": "Aryan Gulati",
-    "email": "aryangul@stanford.edu",
-    "password": "aryan@2003",
+    "email": "$2b$10$jLyOEaoJ4YyTvESEDvq.DOdqYY7nhya5M5vsXVrN4lLrBdfmnB8i6",
+    "password": "$2b$10$ui/gfwq3xodVwt4ylRSrDePIVoP.hBdhToaRcQy4M4sq7IxXuZNP.",
     "firstName": "Aryan",
     "year": "Junior",
     "classes": [
@@ -18,73 +18,7 @@
       "yes",
       "no"
     ],
-    "academicInfo": "AI",
-    "personalInfo": "Tennis"
-  },
-  {
-    "id": 2,
-    "name": "Ryan Loo",
-    "email": "ryloo@stanford.edu",
-    "password": "ryan",
-    "firstName": "Ryan",
-    "year": "Junior",
-    "classes": [
-      "CS278",
-      "CS109",
-      "PHYS43",
-      "ENGLISH90"
-    ],
-    "partnerStatus": [
-      "no",
-      "yes",
-      "no",
-      "no"
-    ],
-    "academicInfo": "Love Design",
-    "personalInfo": "Enjoy the outdoors"
-  },
-  {
-    "id": 3,
-    "name": "Test User ",
-    "email": "test@gmail.com",
-    "password": "test",
-    "firstName": "Test",
-    "year": "Senior",
-    "classes": [
-      "CS278",
-      "CS106B",
-      "CS269i",
-      "MUSIC105"
-    ],
-    "partnerStatus": [
-      "no",
-      "yes",
-      "no",
-      "yes"
-    ],
-    "academicInfo": "Love business and economics",
-    "personalInfo": "Enjoy anything musical - playing the guitar, concerts "
-  },
-  {
-    "id": 4,
-    "name": "Hash User 1",
-    "email": "$2b$10$tD.jq7IpYlieL1WFIqgJxuMyWxFbsqkw3PM0GQf8.AIlXonY64zIW",
-    "password": "$2b$10$p.ornwjVrOpoxlJLd208VuUjiEFaFsO7w.zmFnUdPJyhEPEKnq7YK",
-    "firstName": "Hash",
-    "year": "Sophomore",
-    "classes": [
-      "sdavs",
-      "scadv",
-      "dcsvd",
-      "sc "
-    ],
-    "partnerStatus": [
-      "yes",
-      "yes",
-      "yes",
-      "yes"
-    ],
-    "academicInfo": "scavd ",
-    "personalInfo": "scVD "
+    "academicInfo": "AI, building projects ",
+    "personalInfo": "Tennis, guitar and anything outdoorsy"
   }
 ]

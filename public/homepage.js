@@ -75,7 +75,7 @@ function filterNames(className) {
 
     buttons.forEach(button => {
         const nameText = button.querySelector('.button-text strong').textContent.toLowerCase();
-        const yearText = button.querySelector('.button-text').innerHTML.toLowerCase().includes('senior') ? 'senior' : 'junior';
+        const yearText = button.querySelector('.button-text').innerHTML.toLowerCase();
         const statusText = button.querySelector('.status-badge').textContent.toLowerCase();
 
         let matchesSearch = !searchInput || nameText.includes(searchInput);
